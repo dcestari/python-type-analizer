@@ -1,0 +1,2 @@
+class Variable(Expresion):
+  pass

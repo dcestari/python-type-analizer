@@ -1,0 +1,2 @@
+class Entero(Expresion):
+  pass
