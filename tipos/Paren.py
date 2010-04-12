@@ -2,6 +2,7 @@ from Tipo import Tipo
 
 class Paren(Tipo):
   def __init__(self, t):
+    self.tipo = "Paren"
     self.t = t
 
   def __str__(self):

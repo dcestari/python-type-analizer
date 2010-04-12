@@ -1,7 +1,9 @@
 from Tipo import Tipo
+from utils.Sustitucion import Sustitucion
 
 class Var(Tipo):
   def __init__(self, symbol):
+    self.tipo = "Var"
     self.symbol = symbol
 
   def __str__(self):

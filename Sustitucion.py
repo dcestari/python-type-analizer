@@ -1,11 +1,3 @@
-from tipos.Bool import Bool
-from tipos.Int import Int
-from tipos.Fun import Fun
-from tipos.Paren import Paren
-from tipos.Var import Var
-
-import sys
-
 class Sustitucion:
   def __init__(self, pairs = None):
     "pairs = [(a, T1), (b, T2), ... , (z, Tn)]"
@@ -36,14 +28,14 @@ class Sustitucion:
     return len(self.pairs)
 
   def sustituir(self, t):
-    if (isinstance(t, Fun)):
+    if (t.tipo == 'Fun'):
       t.domain = self.sustituir(t.domain)
       t.range = self.sustituir(t.range)
       return t
-    elif(isinstance(t, Var)):
+    elif(t.tipo == 'Var'):
       e = self.find(t)
       if (e != None): return e
-    elif(isinstance(t, Paren)):
+    elif(t.tipo == 'Paren'):
       t.t = self.sustituir(t.t)
 
     return t
