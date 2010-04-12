@@ -56,7 +56,14 @@ class Sustitucion:
     return Sustitucion(new_pairs)
 
   def __eq__(self, other):
-    return self.pairs == other.pairs
+    if (isinstance(other, Sustitucion)):
+      return sorted(self.pairs, key=lambda e: e[0].symbol) == sorted(other.pairs, key=lambda e: e[0].symbol)
+    else:
+      return False
 
   def __ne__(self, other):
     return not (self == other)
+
+  def __str__(self):
+    strs = map(lambda e: (str(e[0]), str(e[1])), sorted(self.pairs, key=lambda e: e[0].symbol))
+    return str(strs)
