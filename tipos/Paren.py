@@ -12,7 +12,10 @@ class Paren(Tipo):
     if (isinstance(other, Paren)):
       return self.t == other.t
     else:
-      return False
+      return self.t == other
 
   def __ne__(self, other):
     return not (self == other)
+
+  def unify(self, t):
+    return self.t.unify(t)

@@ -19,3 +19,14 @@ class Fun(Tipo):
   def __ne__(self, other):
     return not (self == other)
 
+  def unify(self, t):
+    if (isinstance(t, Fun)):
+      s_domain = self.domain.unify(t.domain)
+      s_range = self.range.unify(t.range).compose(s_domain)
+
+      s_self = self.domain.unify(self.range)
+      s_t = t.domain.unify(t.range)
+
+      return s_range.compose(s_domain.compose(s_t.compose(s_self.compose(s_range))))
+    else:
+      return t.unify(self)

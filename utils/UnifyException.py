@@ -1,0 +1,2 @@
+class UnifyException(Exception):
+  pass

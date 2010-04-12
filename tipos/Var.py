@@ -17,3 +17,8 @@ class Var(Tipo):
 
   def __ne__(self, other):
     return not (self == other)
+
+  def unify(self, t):
+    u = Sustitucion()
+    u.push(self, t)
+    return u
