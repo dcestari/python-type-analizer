@@ -42,41 +42,41 @@ class SustitucionTest(unittest.TestCase):
   def test_find(self):
     s = Sustitucion()
     s.push(Var('a'), Fun(Var('x'), Var('y')))
-    self.assertEqual(str(s.find(Var('a'))), str(Fun(Var('x'), Var('y'))))
+    self.assertEqual(s.find(Var('a')), Fun(Var('x'), Var('y')))
 
   def test_sustituir(self):
     s = Sustitucion()
     s.push(Var('a'), Fun(Var('b'), Int()))
     self.assertEqual(
-      str(s.sustituir(Fun(Var('a'), Var('b')))),
-      str(Fun(Fun(Var('b'), Int()), Var('b')))
+      s.sustituir(Fun(Var('a'), Var('b'))),
+      Fun(Fun(Var('b'), Int()), Var('b'))
     )
 
   def test_sustituir_vacio(self):
     s = Sustitucion()
     self.assertEqual(
-      str(s.sustituir(Fun(Var('a'), Var('b')))),
-      str(Fun(Var('a'), Var('b')))
+      s.sustituir(Fun(Var('a'), Var('b'))),
+      Fun(Var('a'), Var('b'))
     )
 
   def test_sustituir_tipo_base(self):
     s = Sustitucion()
     s.push(Var('a'), Fun(Var('b'), Int()))
     self.assertEqual(
-      str(s.sustituir(Int())),
-      str(Int())
+      s.sustituir(Int()),
+      Int()
     )
     self.assertEqual(
-      str(s.sustituir(Bool())),
-      str(Bool())
+      s.sustituir(Bool()),
+      Bool()
     )
 
   def test_sustituir_paren(self):
     s = Sustitucion()
     s.push(Var('a'), Fun(Var('b'), Int()))
     self.assertEqual(
-      str(s.sustituir(Paren(Var('a')))),
-      str(Paren(Fun(Var('b'), Int())))
+      s.sustituir(Paren(Var('a'))),
+      Paren(Fun(Var('b'), Int()))
     )
 
   def test_compose(self):
@@ -89,16 +89,14 @@ class SustitucionTest(unittest.TestCase):
     s2.push(Var('a'), Bool())
     s2.push(Var('w'), Int())
     s = s1.compose(s2)
-    
-    a = map(lambda e: (str(e[0]), str(e[1])), s.all())
 
     self.assertEqual(
-      a,
+      s.all(),
       [
-        (str(Var('a')), str(Fun(Bool(), Int()))),
-        (str(Var('w')), str(Fun(Int(), Fun(Bool(), Bool())))),
-        (str(Var('b')), str(Bool())),
-        (str(Var('c')), str(Int())),
+        (Var('a'), Fun(Bool(), Int())),
+        (Var('w'), Fun(Int(), Fun(Bool(), Bool()))),
+        (Var('b'), Bool()),
+        (Var('c'), Int()),
       ]
     )
 
