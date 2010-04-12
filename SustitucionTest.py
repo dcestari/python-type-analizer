@@ -98,5 +98,16 @@ class SustitucionTest(unittest.TestCase):
       ]
     )
 
+  def test_compose_simple(self):
+    s1 = Sustitucion()
+    s1.push(Var('a'), Fun(Var('c'), Int()))
+    s2 = Sustitucion()
+    s2.push(Var('b'), Fun(Var('a'), Int()))
+    s = Sustitucion()
+    s.push(Var('a'), Fun(Var('c'), Int()))
+    s.push(Var('b'), Fun(Var('a'), Int()))
+
+    self.assertEqual(s1.compose(s2), s)
+
 suite = unittest.TestLoader().loadTestsFromTestCase(SustitucionTest)
 unittest.TextTestRunner(verbosity=2).run(suite)
