@@ -54,3 +54,9 @@ class Sustitucion:
     ))
 
     return Sustitucion(new_pairs)
+
+  def __eq__(self, other):
+    return self.pairs == other.pairs
+
+  def __ne__(self, other):
+    return not (self == other)
