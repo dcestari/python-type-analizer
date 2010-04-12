@@ -1,4 +1,4 @@
-from Sustitucion import Sustitucion
+from utils.Sustitucion import Sustitucion
 
 from tipos.Bool import Bool
 from tipos.Int import Int
@@ -7,8 +7,6 @@ from tipos.Paren import Paren
 from tipos.Var import Var
 
 import unittest
-
-import sys
 
 class SustitucionTest(unittest.TestCase):
   def setUp(self):
