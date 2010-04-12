@@ -1,3 +1,4 @@
+from utils.Sustitucion import Sustitucion
 from utils.UnifyException import UnifyException
 
 class Tipo:
@@ -10,5 +11,5 @@ class Tipo:
     elif(t.tipo == "Var"):
       return t.unify(self)
     else:
-      raise UnifyException(self, t)
+      raise UnifyException(str(self), str(t))
 

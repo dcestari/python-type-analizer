@@ -57,5 +57,15 @@ class TipoTest(unittest.TestCase):
 
     self.assertEqual(a.unify(b), s)
 
+  def test_unify_simple(self):
+    a = Fun(Var('a'), Var('b'))
+    b = Fun(Bool(), Int())
+
+    s = Sustitucion()
+    s.push(Var('a'), Bool())
+    s.push(Var('b'), Int())
+
+    self.assertEqual(a.unify(b), s)
+
 suite = unittest.TestLoader().loadTestsFromTestCase(TipoTest)
 unittest.TextTestRunner(verbosity=2).run(suite)

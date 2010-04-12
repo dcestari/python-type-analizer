@@ -1,4 +1,5 @@
 from Tipo import Tipo
+from utils.Sustitucion import Sustitucion
 
 class Fun(Tipo):
   "T1 --> T2"
@@ -24,8 +25,15 @@ class Fun(Tipo):
       s_domain = self.domain.unify(t.domain)
       s_range = self.range.unify(t.range).compose(s_domain)
 
-      s_self = self.domain.unify(self.range)
-      s_t = t.domain.unify(t.range)
+      try:
+        s_self = self.domain.unify(self.range)
+      except:
+        s_self = Sustitucion()
+
+      try:
+        s_t = t.domain.unify(t.range)
+      except:
+        s_t = Sustitucion()
 
       return s_range.compose(s_domain.compose(s_t.compose(s_self.compose(s_range))))
     else:
